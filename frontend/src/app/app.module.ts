@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -15,7 +16,7 @@ import { AuthInterceptor } from './auth.interceptor';
  import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [LoginComponent, RegisterComponent,DashboardComponent,OrderHistoryComponent,MatSnackBar],
-  imports: [BrowserModule, RouterModule,FormsModule,CommonModule,RouterModule.forRoot(routes),ReactiveFormsModule,HttpClientModule],
+  imports: [BrowserModule, RouterModule,FormsModule, MatSnackBarModule,CommonModule,RouterModule.forRoot(routes),ReactiveFormsModule,HttpClientModule],
   exports:[RouterModule],
   providers: [{
     provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true
