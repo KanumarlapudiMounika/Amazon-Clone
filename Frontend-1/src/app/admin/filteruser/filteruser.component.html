@@ -1,0 +1,9 @@
+
+<h3>Filter Users By Data</h3>
+<input type="date" [(ngModel)]="filterDate" >
+<button (click)="filterByDate()">Filter</button>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.name}}-{{user.email}}
+    </li>
+</ul>

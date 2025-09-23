@@ -1,0 +1,93 @@
+<!-- 
+<div class="auth-container">
+  <form (submit)="register()" class="register-component">
+    <div class="form-group">
+      <h2 >Register</h2>
+      <label>Name:</label>
+      <input type="name" [(ngModel)]="name" name="name" required />
+
+    </div>
+    <div class="form-group">
+      <label>phone:</label>
+      <input type="number" [(ngModel)]="phone" name="phone" required />
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </div>
+    <div class="form-group">
+      <label>Address:</label>
+      <input type="text" [(ngModel)]="address" name="address" required />
+    </div>
+    <div class="form-group">
+     <label>Select Profile</label>
+      <input type="file" (change)="onImageSelected($event)">  
+    </div>
+    <button type="submit" >Register</button>
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </form>
+</div> 
+  -->
+
+
+
+ <div class="auth-container">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-component">
+  <div class="form-group">
+    <h2 >Register</h2>
+    <label>UserName:<span class="required-star">*</span></label>
+    <input type="text" formControlName="name">
+    <div
+        *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+      <small *ngIf="registerForm.get('name')?.errors?.['required']">Username is Required</small>
+      <small *ngIf="registerForm.get('name')?.errors?.['minlength']">Min 6 charaters required</small>
+      </div>
+  </div>
+  <div class="form-group">
+    <label>phone:<span class="required-star">*</span></label>
+    <input type="Phone" formControlName="phone">
+    <div 
+    *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+  <small *ngIf="registerForm.get('phone')?.errors?.['required']"> Phone number is required</small>
+  <small *ngIf="registerForm.get('phone')?.errors?.['maxlength']">Invalid Phone number format</small>
+  </div>
+    </div>
+     <div class="form-group">
+      <label>Address:</label>
+      <input type="text" formControlName="address" >
+      <div
+        *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.invalid">
+      <small *ngIf="registerForm.get('address')?.errors?.['required']">Address is Required</small>
+      </div>
+    </div>
+<div class="form-group">
+  <label>Email:<span class="required-star">*</span></label>
+  <input type="email" formControlName="email">
+  <div 
+  *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+<small *ngIf="registerForm.get('email')?.errors?.['required']"> Email is required</small>
+<small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid Email format</small>
+</div>
+</div>
+
+<div class="form-group">
+  <label>Password:<span class="required-star">*</span></label>
+  <input type="password" formControlName="password">
+  <div 
+  *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+<small *ngIf="registerForm.get('password')?.errors?.['required']"> Password is required</small><br>
+<small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password minimum length must be 6</small><br>
+<small *ngIf="registerForm.get('password')?.errors?.['UpperCase']">Password must contain atleast 1 UpperCase</small><br>
+<small *ngIf="registerForm.get('password')?.errors?.['LowerCase']">Password must contain atleast 1 LowerCase</small>
+</div>
+</div>
+<button type="submit">Register</button>
+    <p>Already have an account? <a href="/login">Login</a></p>
+    <div 
+    style="margin-top: 10px; color:green; background-color: aliceblue;text-align: center;width: 50%;align-items: center;">{{Message}}</div>
+</form>
+</div> 

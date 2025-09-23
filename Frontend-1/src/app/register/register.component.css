@@ -1,0 +1,115 @@
+/* Background */
+.auth-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-55deg, #ff9966, #514a9d,#ff512f);
+  background-size: 400% 400%;
+ /* animation: gradientBG 10s ease ;*/
+  color: #f5f5f5;
+}
+.required-star{
+  color:#111;
+}
+ 
+/* Glass card */
+.register-component {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color:white;
+  animation: fadeIn 0.7s ease-in-out;
+}
+ 
+.register-component h2 {
+  text-align: center;
+  color:white;
+  margin-bottom: 30px;
+  font-size: 26px;
+}
+ 
+/* Form styles */
+.form-group {
+  margin-bottom: 20px;
+}
+ 
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+ 
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #333;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+ 
+.form-group input:focus {
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 2px #232f3e;
+}
+ 
+/* Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffa41c;
+  border: none;
+  border-radius: 12px;
+  color: #111;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+ 
+button[type="submit"]:hover {
+  background-color: #ff9900;
+}
+ 
+/* Link */
+.register-component p {
+  margin-top: 15px;
+  text-align: center;
+}
+ 
+.register-component a {
+  color: #007185;
+  text-decoration: none;
+  font-weight: bold;
+}
+ 
+.register-component a:hover {
+  text-decoration: underline;
+}
+ 
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 

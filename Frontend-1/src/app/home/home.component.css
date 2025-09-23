@@ -1,0 +1,216 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Amazon+Ember:wght@400;700&display=swap');
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.body {
+    font-family: 'Amazon Ember', Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+     background: linear-gradient(-45deg, #ff8c00, #ff4500, #1a1a1a);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s infinite;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: white
+}
+ 
+.home-container {
+    max-width: 500px;
+    margin: 120px auto;
+    background: black;
+    padding: 70px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+
+ 
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #FF9900;
+}
+ 
+.logo i {
+    font-size: 50px;
+}
+ 
+.logo h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+ 
+
+.welcome-text {
+    font-size: 18px;
+    color:white;
+    margin: 20px 0;
+    padding-left: 10px;
+}
+ 
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+ 
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+ 
+button:hover {
+    background-color: #e68a00;
+    transform: scale(1.05);
+}
+ 
+button i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+ 
+@media (max-width: 600px) {
+    .home-container {
+        max-width: 90%;
+    }
+
+    
+} */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+ 
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.home-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #f06, #ffcc00);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: backgroundSlide 10s infinite alternate;
+}
+ 
+.card {
+  background-color: rgba(0, 0, 0, 0.33);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 340px;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+ 
+.logo i {
+  font-size: 50px;
+  color: #ff9900;
+  animation: iconPop 1s ease-out;
+}
+ 
+.logo h1 {
+  margin: 10px 0;
+  font-size: 34px;
+  color: #ffffff;
+}
+ 
+.tagline {
+  font-size: 16px;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+ 
+.buttons .btn {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #ff9900;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #ff9900aa;
+}
+ 
+.buttons .btn:hover {
+  background-color: #e88e00;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff9900dd;
+}
+ 
+.buttons .admin {
+  background-color: #222;
+  box-shadow: 0 0 10px #ffffff33;
+}
+ 
+.buttons .admin:hover {
+  background-color: #333;
+  box-shadow: 0 0 20px #ffffff88;
+}
+ 
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-in-out forwards;
+}
+ 
+.animate-icon {
+  animation: iconPop 1s ease-out;
+}
+ 
+.animate-btn {
+  animation: slideUp 1s ease-in-out;
+}
+ 
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+ 
+@keyframes slideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+ 
+@keyframes iconPop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+ 
+@keyframes backgroundSlide {
+  0% { background: linear-gradient(135deg, #f06, #ffcc00); }
+  100% { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+}
+ 

@@ -1,0 +1,47 @@
+
+ 
+<!-- <div class="login-container">
+  <h2>Login</h2>
+  <form>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+ 
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+ 
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+ 
+    <button type="button" (click)="signin()">SignIn</button>
+  </form>
+  <div class="forgot-password">
+     <p>Forgot your password? Click <a href="#">here</a> to reset</p>
+     </div></form>
+     <a routerLink="/forgot">Forgot Password</a>
+ 
+    </div>
+</div> -->
+<div class="body">
+<div class="login-container">
+    <h2>Login</h2>
+    <form>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+   
+      <label for="password" >Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" [(ngModel)]="password" required>
+   
+      <button type="button" (click)="login()">Login</button>
+    </form>
+   
+   
+    <div class="Register">
+      <p> Don't have an account <button type="button" (click)="register()">Register</button></p>
+    </div>
+    <div class="forgot-password">
+     
+      <p>Forgot your password? Click <a href="/login">here</a> to reset.</p>
+    </div>
+  </div>
+</div>
+   

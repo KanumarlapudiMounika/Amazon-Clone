@@ -1,0 +1,244 @@
+    .body-section {
+      display: flex;
+      margin-top: 20px;
+    }
+     
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(19, 25, 33, 0.9);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    .dashboard-container {
+      min-height: 100vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      backdrop-filter: blur(1px);
+      padding: 20px;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+     
+    /* Container Setup */
+.product-list-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin: 0 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Filters Sidebar */
+
+.filters h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #222;
+}
+ 
+.filters label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;
+  color: #222;
+}
+ 
+h3{
+  color: #222;
+}
+.filters input[type="number"],
+.filters select {
+  width: 65%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+  font-size: 14px;
+  outline: none;
+}
+ 
+/* Filter Button */
+.filters button {
+  width: 40%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+ 
+.filters button:hover {
+  background: #0056b3;
+}
+ 
+/* Product Grid Layout */
+.product-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+ 
+/* Product Cards */
+.product-grid div {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+ 
+.product-grid div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Product Image */
+.product-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+ 
+/* Product Text */
+.product-grid h2 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+  color: #222;
+}
+ 
+.in-stock {
+  color: green;
+  font-weight: bold;
+}
+ 
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+ 
+/* Add to Cart Button */
+.product-grid button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+ 
+.product-grid button:hover {
+  background-color: #1e7e34;
+}
+.toggle-btn, .fa-home-icon {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+ 
+.brand {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+ 
+.search-container {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+ 
+.search-container input {
+  width: 50%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  align-items: center;
+}
+ 
+.search-container button {
+  background-color: #febd69;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+ 
+/* Action buttons (profile, orders, cart) */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+ 
+.action-buttons button {
+  background-color: #37475a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sidebar {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  width: 200px;
+  transition: all 0.3s;
+}
+ 
+.sidebar.closed {
+  display: none;
+}
+ 
+.sidebar button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #232f3e;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.products-search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.catagories-container-search {
+  flex: 1;
+  margin-left: 20px;
+}
+
+
+
+
+
+
+
+
