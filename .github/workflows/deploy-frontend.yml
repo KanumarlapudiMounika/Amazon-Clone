@@ -1,0 +1,41 @@
+name: Build and Deploy Angular Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+        working-directory: ./frontend
+
+      - name: Build Angular
+        run: npm run build --prod
+        working-directory: ./frontend
+
+      - name: List Angular dist folder
+        run: ls -l ./frontend/dist
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME_FRONTEND }}
+          package: ./frontend/dist/e-commerce2
