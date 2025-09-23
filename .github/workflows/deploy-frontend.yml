@@ -1,0 +1,35 @@
+name: Build and Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Login to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Step 3: Build frontend Docker image
+      - name: Build Docker Image
+        run: |
+          cd frontend
+          docker build -t ${AZURE_WEBAPP_NAME_FRONTEND}:latest .
+
+      # Step 4: Push & Deploy to Azure Web App
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME_FRONTEND }}
+          images: ${AZURE_WEBAPP_NAME_FRONTEND}:latest
+          slot-name: production
