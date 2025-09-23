@@ -17,26 +17,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         working-directory: ./frontend
-
 
       - name: Build Angular
         run: npm run build --prod
         working-directory: ./frontend
 
-      - name: List Angular dist folder
-        run: ls -l ./frontend/dist
-
-      - name: Log in to Azure
-        uses: azure/login@v1
+      - name: Deploy to Azure Static Web App
+        uses: Azure/static-web-apps-deploy@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ secrets.AZURE_WEBAPP_NAME_FRONTEND }}
-          package: ./frontend/dist/e-commerce2
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # optional, used for PR comments
+          action: "upload"
+          app_location: "frontend"             # your Angular project root
+          output_location: "dist/e-commerce2"  # Angular build output folder
