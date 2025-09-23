@@ -13,7 +13,7 @@ import com.example.demo10.Entity.Subcategory;
 import com.example.demo10.Service.SubcategoryService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://amazonfe.azurewebsites.net")
 @RequestMapping("api/subcategory")
 
 
