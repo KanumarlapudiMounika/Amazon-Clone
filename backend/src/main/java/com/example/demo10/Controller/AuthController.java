@@ -31,7 +31,7 @@ import com.example.demo10.Repository.UserRepository;
 import com.example.demo10.Service.UserService;
 import com.example.demo10.filter.*;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://amazonfe.azurewebsites.net")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
