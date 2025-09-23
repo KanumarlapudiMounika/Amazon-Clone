@@ -1,4 +1,4 @@
-name: Deploy Spring Boot Backend to Azure Web App
+name: Build and Deploy Spring Boot Backend to Azure
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy-backend:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,9 @@ jobs:
         run: mvn clean package -DskipTests
         working-directory: ./backend
 
+      - name: List target folder
+        run: ls -l ./backend/target
+
       - name: Log in to Azure
         uses: azure/login@v1
         with:
@@ -32,4 +35,34 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME_BACKEND }}
-          package: ./backend/target/*.jar
+          package: ./backend/target/demo10-*.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
