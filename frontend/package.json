@@ -23,10 +23,11 @@
     "rxjs": "^7.8.0",
     "zone.js": "~0.13.0"
   },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^18.0.0",
-    "@angular/cli": "^18.0.0",
-    "@angular/compiler-cli": "^18.0.0",
-    "typescript": "~5.1.6"
-  }
+"devDependencies": {
+  "@angular-devkit/build-angular": "^18.0.0",
+  "@angular/cli": "^18.0.0",
+  "@angular/compiler-cli": "^18.0.0",
+  "typescript": "~5.5.0"
+}
+
 }
