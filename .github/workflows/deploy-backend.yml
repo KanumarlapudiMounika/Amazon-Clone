@@ -1,4 +1,4 @@
-name: Build and Deploy Spring Boot Backend to Azure
+name: Build and Deploy Spring Boot Backend
 
 on:
   push:
@@ -16,14 +16,14 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Build Maven Project
         run: mvn clean package -DskipTests
         working-directory: ./backend
 
-      - name: List target folder
+      - name: List Target Folder
         run: ls -l ./backend/target
 
       - name: Log in to Azure
@@ -34,35 +34,5 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ secrets.AZURE_WEBAPP_NAME_BACKEND }}
-          package: ./backend/target/demo10-*.jar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          app-name: ${{ secrets.AZURE_WEBAPP_BACKEND_NAME }}
+          package: ./backend/target/demo10-0.0.1-SNAPSHOT.jar
