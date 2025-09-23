@@ -24,7 +24,7 @@ jobs:
       - name: Build Docker Image
         run: |
           cd backend
-          docker build -t ${AZURE_WEBAPP_NAME_BACKEND}:latest .
+          docker build -t ${{ secrets.AZURE_WEBAPP_NAME_BACKEND }}:latest .
 
       # Step 4: Push & Deploy to Azure Web App
       - name: Deploy to Azure Web App
