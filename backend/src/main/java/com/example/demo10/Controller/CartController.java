@@ -10,7 +10,7 @@ import java.util.Map;
 import com.example.demo10.Service.*;
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://amazonfe.azurewebsites.net")
 public class CartController {
  
 	@Autowired private cartService cartItemService;
