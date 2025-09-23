@@ -4,25 +4,31 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Login to Azure using Service Principal
-      - name: Azure Login
-        uses: azure/login@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          node-version: '18'
 
-      # Deploy frontend container
-      - name: Deploy to Azure Web App (Frontend)
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Build Angular app
+        run: npm run build --prod
+        working-directory: frontend
+
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME_FRONTEND }}
-          images: ./frontend
+          package: frontend/dist/<your-angular-app>
