@@ -10,7 +10,7 @@ import java.util.Map;
 import com.example.demo10.Service.*;
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = "https://gentle-rock-0cd317e00.2.azurestaticapps.net"")
+@CrossOrigin(origins = "https://gentle-rock-0cd317e00.2.azurestaticapps.net")
 public class CartController {
  
 	@Autowired private cartService cartItemService;
