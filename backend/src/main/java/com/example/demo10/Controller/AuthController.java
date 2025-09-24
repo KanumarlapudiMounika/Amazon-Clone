@@ -31,7 +31,7 @@ import com.example.demo10.Repository.UserRepository;
 import com.example.demo10.Service.UserService;
 import com.example.demo10.filter.*;
 
-@CrossOrigin("https://amazonfe.azurewebsites.net")
+@CrossOrigin("https://gentle-rock-0cd317e00.2.azurestaticapps.net")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
