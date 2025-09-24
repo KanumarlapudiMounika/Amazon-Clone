@@ -34,7 +34,7 @@ import com.example.demo10.filter.JwtUtil;
 @RestController
 @RequestMapping("/api/admin/users")
 @PreAuthorize("hasAuthority('ADMIN')")
-@CrossOrigin(origins="https://amazonfe.azurewebsites.net")
+@CrossOrigin(origins="https://gentle-rock-0cd317e00.2.azurestaticapps.net")
 
 
 public class AdminUserController {
