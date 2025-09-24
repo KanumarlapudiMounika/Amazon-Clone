@@ -17,7 +17,7 @@ import com.example.demo10.Repository.ProductRepository;
 import com.example.demo10.Service.ProductService;
 
 
-@CrossOrigin("https://amazonfe.azurewebsites.net")
+@CrossOrigin("https://gentle-rock-0cd317e00.2.azurestaticapps.net")
 @RequestMapping("/api/products")
 @RestController
 public class ProductController {
