@@ -1,30 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
-import { Subcategory } from '../Subcategory.model';
 import { Product } from '../product.model';
-import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-sub-category',
-  standalone: true,
-  imports: [RouterModule,CommonModule,FormsModule],
   templateUrl: './sub-category.component.html',
-  styleUrl: './sub-category.component.css'
+  styleUrls: ['./sub-category.component.css']
 })
-export class SubCategoryComponent {
+export class SubCategoryComponent implements OnInit {
   category: string = '';
-  searchPerformed:boolean=false;
-  products:Product[]=[];
- subcategories: { name: string, image: string }[] = [];
-  //subcategories:Subcategory[]=[];
- 
-    allSubcategories: { [key: string]: string[] } = {
-    Electronics: ['Mobiles', 'Laptops', 'TVs'],
-    Fashion: ['Men', 'Women', 'Kids'],
-    Grocery: ['Fruits', 'Vegetables', 'Snacks']
-  }; 
+  searchPerformed: boolean = false;
+  products: Product[] = [];
+  subcategories: { name: string, image: string }[] = [];
+
   subcategoryMap: { [key: string]: { name: string, image: string }[] } = {
     Electronics: [
       { name: 'Mobiles', image: 'Mobile.jfif' },
@@ -37,7 +26,7 @@ export class SubCategoryComponent {
       { name: 'Women-casual', image: 'womencasuals.jpg' },
       { name: 'Women-ethnic', image: 'womenethnic.jfif' },
       { name: 'Kids', image: 'kids.jfif' },
-      {name:'Men-Ethnic' ,image:'menethnice'}
+      { name: 'Men-Ethnic', image: 'menethnice' }
     ],
     Home_Kitchen: [
       { name: 'Furniture', image: 'Furniture.jpg' },
@@ -45,105 +34,74 @@ export class SubCategoryComponent {
       { name: 'Home_Decor', image: 'homedecor.jfif' },
       { name: 'Storage', image: 'storage.jpg' }
     ],
-    Books_And_Stationary: [
-      { name: 'Fictional_Novels', image: 'Novels' },
-      { name: 'Academic', image: 'Academics.jfif' },
-      { name: 'Notebooks', image: 'NoteBooks' },
-      { name: 'Pens_Supplies', image: 'pens.jpg' }
-    ],
-    Beauty_And_Personalcare: [
-      { name: 'Skin_Care', image: 'skincare.jfif' },
-      { name: 'Make_Up', image: 'Makeup' },
-      { name: 'Hair_Care', image: 'haircare.jfif' },
-      { name: 'Fragnances', image: 'fragnance' }
-    ],
-    Sports_And_Fitness: [
-      { name: 'Gym_Equipment', image: 'gymEquipment.jfif' },
-      { name: 'Yoga_Mats', image: 'yogamats.jfif' },
-      { name: 'Sports_Wear', image: 'sports.jfif' },
-      { name: 'Water_Bottles', image: 'WaterBottle' }
-    ],
-    Toys_And_Baby: [
-      { name: 'Soft_Toys', image: 'softtoys.jpg' },
-      { name: 'Educational_Toys', image: 'Educationaltoys.jpg' },
-      { name: 'Baby_Care', image: 'Babycare.jfif' },
-      { name: 'Baby_Clothing', image: 'BabyCloths.jpg' }
-    ],
-    Groceries_And_Essentials: [
-      { name: 'Fruits & vegetables', image: 'fruits.jfif' },
-      { name: 'Snacks & Bevarages', image: 'snacks.jfif' },
-      { name: 'Dairy Products', image: 'DairyProduct' },
-      { name: 'Cleaning Supplies', image:'cleaning.jpg' }
-    ],
-  }; 
-   
-  constructor(private route: ActivatedRoute,private router:Router,private productService:ProductService) {}
-   
+    // Add remaining subcategories if needed
+  };
+
+  isSidebarClosed = false;
+  backgroundImages: string[] = [
+    '/images/catagories/bg1.jpg',
+    '/images/catagories/bg2.jpg',
+    '/images/catagories/bg3.jpg'
+  ];
+  currentBackground: string = this.backgroundImages[0];
+  bgIndex = 0;
+
+  searchKeyword: string = '';
+
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {}
+
   ngOnInit(): void {
+    // Load category & subcategories
     this.route.paramMap.subscribe(params => {
       this.category = params.get('categoryName')!;
       this.subcategories = this.subcategoryMap[this.category] || [];
-    }); 
+    });
 
-  
-    }
-  
-
-
-  fetchProfile(){
-    this.router.navigate(['/viewProfile'])
-  }
-
-  isSidebarClosed = false;
- 
-toggleSidebar() {
-  this.isSidebarClosed = !this.isSidebarClosed;
-}
-
-updateProfile(){
-    
-  this.router.navigate(['/profile'])
-}
- 
-backgroundImages: string[] = [
-  '/images/catagories/bg1.jpg',
-  '/images/catagories/bg2.jpg',
-  '/images/catagories/bg3.jpg'
-];
-currentBackground: string = this.backgroundImages[0];
-bgIndex = 0;
- 
-onInit() {
- 
-  this.currentBackground=this.backgroundImages[this.bgIndex];
-  setInterval(() => {
-    this.bgIndex = (this.bgIndex + 1) % this.backgroundImages.length;
+    // Background rotation
     this.currentBackground = this.backgroundImages[this.bgIndex];
-  }, 5000); 
+    setInterval(() => {
+      this.bgIndex = (this.bgIndex + 1) % this.backgroundImages.length;
+      this.currentBackground = this.backgroundImages[this.bgIndex];
+    }, 5000);
+  }
 
-}
-goHome(){
-this.router.navigate(['/home'])
-}
-  goToCart(){
-      this.router.navigate(['/cart'])
+  toggleSidebar() {
+    this.isSidebarClosed = !this.isSidebarClosed;
   }
-  viewOrders(){
 
+  goHome() {
+    this.router.navigate(['/home']);
   }
-  goToProductList(sub : any){
-    console.log("Navigating to products",this.category,sub.name);
-    this.router.navigate(['/products',this.category,sub.name]);
+
+  goToCart() {
+    this.router.navigate(['/cart']);
   }
-  searchKeyword:string='';
-  onSearch(){
-    this.productService.searchProducts(this.searchKeyword).subscribe(data=>{
-      console.log(this.searchKeyword)
-      this.searchPerformed=true;
-      this.products=data;
-    })
+
+  fetchProfile() {
+    this.router.navigate(['/viewProfile']);
   }
-  View(productName:string){
-    this.router.navigate(['/product-details',productName])
-   }
+
+  updateProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+  goToProductList(sub: any) {
+    this.router.navigate(['/products', this.category, sub.name]);
+  }
+
+  viewOrders() {
+    this.router.navigate(['/orders']);
+  }
+
+  onSearch() {
+    this.productService.searchProducts(this.searchKeyword).subscribe(data => {
+      this.searchPerformed = true;
+      this.products = data;
+    });
+  }
+
+  View(productName: string) {
+    this.router.navigate(['/product-details', productName]);
+  }
 }
+

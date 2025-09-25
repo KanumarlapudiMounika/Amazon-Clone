@@ -1,91 +1,93 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
 import { Subcategory } from './Subcategory.model';
-import { HttpParams } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-private apiUrl="http://localhost:8080/api/products";
-private ratingUrl="http://localhost:8080/api/products/rating";
-  constructor(private http:HttpClient) { }
-  getAllProducts():
-    Observable<Product[]>{
-  return  this.http.get<Product[]>(this.apiUrl);
-}
+  private apiUrl = 'http://20.6.75.147:8080/api/products';
+  private subcategoryUrl = 'http://20.6.75.147:8080/api/subcategory';
 
-private url="http://localhost:8080/api/subcategory";
-fetchByCategory(category:string):Observable<Subcategory[]>{
-  return this.http.get<Subcategory[]>(`${this.url}${category}`);
-}
+  constructor(private http: HttpClient) { }
 
-getByCategory(category:string):
-Observable<Product[]>{
-  return this.http.get<Product[]>(`${this.apiUrl}/category/${category}`);
-}
+  // Get all products
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);
+  }
 
-filter(minPrice?:number,maxPrice?:number,rating?:number):
-Observable<Product[]>{
-  let params = new HttpParams();
-  if(minPrice != null) params=params.set('minPrice',minPrice);
-  if(maxPrice != null) params=params.set('maxPrice',maxPrice);
-  if(rating != null) params=params.set('rating',rating);
+  // Fetch subcategories by category
+  fetchByCategory(category: string): Observable<Subcategory[]> {
+    return this.http.get<Subcategory[]>(`${this.subcategoryUrl}/${category}`);
+  }
 
-  return this.http.get<Product[]>(`${this.apiUrl}/filter,{params}`);
-}
+  // Get products by category
+  getByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/category/${category}`);
+  }
 
-  getProductsByCategoryAndSubcategory(category: string, subcategory: string):Observable<Product[]> {
-    return this.http.get<Product[]>(`http://localhost:8080/api/products/${category}/${subcategory}`);
-    }
+  // Filter products by minPrice, maxPrice, rating
+  filter(minPrice?: number, maxPrice?: number, rating?: number): Observable<Product[]> {
+    let params = new HttpParams();
+    if (minPrice != null) params = params.set('minPrice', minPrice);
+    if (maxPrice != null) params = params.set('maxPrice', maxPrice);
+    if (rating != null) params = params.set('rating', rating);
 
+    return this.http.get<Product[]>(`${this.apiUrl}/filter`, { params });
+  }
 
-    filterByPriceAndSubcategory(subcategory: string, minPrice: number, maxPrice: number): Observable<Product[]> {
-      let params = new HttpParams()
-        .set('subcategory', subcategory)
-        .set('minPrice', minPrice.toString())
-        .set('maxPrice', maxPrice.toString());
-   
-      return this.http.get<Product[]>(`${this.apiUrl}/filter`, { params });
-    }
-   
-    filterByRatingAndSubcategory(subcategory: string, rating: number): Observable<Product[]> {
-      let params = new HttpParams()
-        .set('subcategory', subcategory)
-        .set('rating', rating.toString());
-   
-      return this.http.get<Product[]>(`${this.apiUrl}/rating`, { params });
-    }
+  // Get products by category and subcategory
+  getProductsByCategoryAndSubcategory(category: string, subcategory: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/${category}/${subcategory}`);
+  }
 
+  // Filter by price and subcategory
+  filterByPriceAndSubcategory(subcategory: string, minPrice: number, maxPrice: number): Observable<Product[]> {
+    const params = new HttpParams()
+      .set('subcategory', subcategory)
+      .set('minPrice', minPrice.toString())
+      .set('maxPrice', maxPrice.toString());
 
+    return this.http.get<Product[]>(`${this.apiUrl}/filter`, { params });
+  }
 
+  // Filter by rating and subcategory
+  filterByRatingAndSubcategory(subcategory: string, rating: number): Observable<Product[]> {
+    const params = new HttpParams()
+      .set('subcategory', subcategory)
+      .set('rating', rating.toString());
 
+    return this.http.get<Product[]>(`${this.apiUrl}/rating`, { params });
+  }
 
-    searchProducts(keyword:string):Observable<Product[]>{
-      return this.http.get<Product[]>(`http://localhost:8080/api/products/search?keyword=${keyword}`);
-    }
+  // Search products by keyword
+  searchProducts(keyword: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/search`, {
+      params: new HttpParams().set('keyword', keyword)
+    });
+  }
 
-    getProductByName(name : string):Observable<Product[]>
-{
-  return this.http.get<Product[]>(`http://localhost:8080/api/products/name/${encodeURIComponent(name)}`);
-}
+  // Get product by name
+  getProductByName(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/name/${encodeURIComponent(name)}`);
+  }
 
+  // Get products by rating
+  getProductsByRating(rating: number): Observable<Product[]> {
+    const params = new HttpParams().set('rating', rating.toString());
+    return this.http.get<Product[]>(`${this.apiUrl}/rating`, { params });
+  }
 
+  // Get related products excluding the current product
+  getRelatedProducts(category: string, subcategory: string, excludeName: string): Observable<Product[]> {
+    const params = new HttpParams()
+      .set('category', category)
+      .set('subcategory', subcategory)
+      .set('excludeName', excludeName);
 
-getProductsByRating(rating:number):Observable<Product[]>{
-  const params=new HttpParams().set("rating",rating.toString());
-  return this.http.get<Product[]>(`{this.apiUrl}/rating`,{params});
-}
-
-getRelatedProducts(category:string,subcategory:string,excludeName:string):Observable<Product[]>{
-  const params=new HttpParams()
-  .set('category',category)
-  .set('subcategory',subcategory)
-  .set('excludeName',excludeName)
-  return this.http.get<Product[]>(`http://localhost:8080/api/products/related`,{params});
-}
-
-
+    return this.http.get<Product[]>(`${this.apiUrl}/related`, { params });
+  }
 }
 

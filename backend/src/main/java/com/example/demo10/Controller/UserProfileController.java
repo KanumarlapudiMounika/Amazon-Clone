@@ -16,7 +16,7 @@ import com.example.demo10.Service.UserProfileService;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins="https://gentle-rock-0cd317e00.2.azurestaticapps.net")
+@CrossOrigin(origins="*")
 public class UserProfileController {
 	@Autowired
     private UserProfileService profileService;

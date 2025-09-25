@@ -10,7 +10,7 @@
         <button ><i class="fas fa-search"></i></button>    
       </div>
       <div class="action-buttons">
-        <button (click)="fetchProfile()">Profile</button>
+        <button (click)="viewProfile()">Profile</button>
         <button (click)="viewOrders()">Orders</button>
         <button (click)="goToCart()">Cart</button>
       </div>
@@ -20,17 +20,12 @@
         <button (click)="updateProfile()">
           <i class="fas fa-user"></i> Update Profile
         </button>
-        <button (click)="fetchProfile()">
+        <button (click)="viewProfile()">
           <i class="fas fa-eye"></i> View Profile
         </button>
         <h3>Filters</h3>
         <div class="filters">
-        <div class="price-filter">
-          <label>Price Range:</label>
-          <input type="number" placeholder="Min Price" #minPrice>
-          <input type="number" placeholder="Max Price" #maxPrice>
-          <button (click)="filterByPrice(+minPrice.value, +maxPrice.value)">Apply</button> 
-        </div> 
+       
         <div class="rating-filter">
           <label>Minimum Rating:</label>
           <select >
@@ -41,7 +36,7 @@
           </select>
         </div> 
       </div>
-    </div>
+    
       <div class="product-container">
       <div *ngIf="product">
     <img  [src]="'/images/Products/'+product.imageUrl" alt="{{ product.name }}" width="200">

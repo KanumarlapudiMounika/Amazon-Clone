@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { AdminServiceService } from '../../admin-service.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-blockuser',
-  standalone: true,
-  imports: [FormsModule],
   templateUrl: './blockuser.component.html',
-  styleUrl: './blockuser.component.css'
+  styleUrls: ['./blockuser.component.css']
 })
 export class BlockuserComponent {
 

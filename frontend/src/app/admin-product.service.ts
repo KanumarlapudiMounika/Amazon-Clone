@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AdminProductService {
-  baseUrl='http://localhost:8080/api/admin/products';
+  baseUrl = 'http://20.6.75.147:8080/api/admin/products';
   constructor(private http:HttpClient) { }
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl);

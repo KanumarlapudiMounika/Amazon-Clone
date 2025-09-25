@@ -1,91 +1,59 @@
- import { Component ,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileServiceService } from '../profile-service.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-profile',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
-  email: string = '';  // Make sure email is set before sending request
+export class ProfileComponent implements OnInit {
+  email: string = '';
   updatedProfileData = {
     name: '',
     phone: '',
     address: ''
   };
   errorMessage: string = '';
-  constructor(private profileService:ProfileServiceService) {}
 
+  constructor(private profileService: ProfileServiceService) {}
 
   ngOnInit(): void {
-   
-  }
- 
- 
- 
-  /* updateProfile(): void {
-const profileData = { email: this.email, phoneNumber: this.phoneNumber, address: this.address };
-this.profileService.updateProfile(this.email, profileData).subscribe(() => {
-      alert('Profile updated successfully!');
-    });
-  } */
-
-    updateProfile() {
-      console.log("Update button clicked");
-   
-  if (!this.email) {
-        this.errorMessage = 'Please enter an email.';
-        console.error("No email provided");
-        return;
+    // Fetch email from localStorage instead of JWT
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        this.email = user?.email || '';
+        // Optionally, pre-fill other fields
+        this.updatedProfileData.name = user?.name || '';
+        this.updatedProfileData.phone = user?.phone || '';
+        this.updatedProfileData.address = user?.address || '';
+      } catch (err) {
+        console.error('Error parsing user from localStorage', err);
       }
-   
-  console.log("Sending update request to:", `http://localhost:8080/api/profile/${this.email}`);
-      console.log("Payload:", JSON.stringify(this.updatedProfileData));
-   
-  this.profileService.updateProfile(this.email, this.updatedProfileData).subscribe(
-        response => {
-          console.log("Profile updated successfully", response);
-          if(response && response.message){
-            alert(response.message);
-          }
-          else{
-            alert("profile updated suceesfully");
-          }
-          this.errorMessage='';
-        },
-       
-      );
+    }
+  }
+
+  updateProfile(): void {
+    if (!this.email) {
+      this.errorMessage = 'Email not found!';
+      return;
     }
 
+    this.profileService.updateProfile(this.email, this.updatedProfileData)
+      .subscribe({
+        next: (response) => {
+          alert(response?.message || 'Profile updated successfully!');
+          this.errorMessage = '';
+        },
+        error: (err) => {
+          console.error('Error updating profile:', err);
+          this.errorMessage = 'Failed to update profile.';
+        }
+      });
+  }
 }
- 
-
-
-
-
-
-
-
-
-
-
-/* import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ProfileServiceService } from '../profile-service.service';
-import { HttpClient } from '@angular/common/http';
-import { error } from 'node:console';
- 
-@Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
-}) */
 
 
  

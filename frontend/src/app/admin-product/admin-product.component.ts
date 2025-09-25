@@ -3,10 +3,9 @@ import { AdminProductService } from '../admin-product.service';
 import { Product } from '../product.model';
 @Component({
   selector: 'app-admin-product',
-  standalone: true,
-  imports: [],
+ 
   templateUrl: './admin-product.component.html',
-  styleUrl: './admin-product.component.css'
+  styleUrls: ['./admin-product.component.css']
 })
 export class AdminProductComponent {
   constructor(private adminproductService: AdminProductService) {}

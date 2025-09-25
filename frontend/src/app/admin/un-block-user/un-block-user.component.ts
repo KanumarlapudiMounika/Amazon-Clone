@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { AdminServiceService } from '../../admin-service.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-un-block-user',
-  standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
   templateUrl: './un-block-user.component.html',
-  styleUrl: './un-block-user.component.css'
+  styleUrls: ['./un-block-user.component.css']
 })
 export class UnBlockUserComponent {
   id!: number;

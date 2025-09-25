@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://amazonbe-hchzczgtand2fger.eastasia-01.azurewebsites.net'
+  apiUrl: 'http://20.6.75.147:8080'
 };
 
